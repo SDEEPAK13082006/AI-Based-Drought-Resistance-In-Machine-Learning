@@ -30,18 +30,33 @@ def verify_token(credentials: HTTPAuthorizationCredentials = Security(security))
     except jwt.PyJWTError:
         raise HTTPException(status_code=401, detail="Could not validate credentials/token expired")
 
+import re
+
+def validate_password_strength(password: str) -> bool:
+    has_letter = re.search(r'[a-zA-Z]', password) is not None
+    has_number = re.search(r'[0-9]', password) is not None
+    has_special = re.search(r'[^a-zA-Z0-9\s]', password) is not None
+    return has_letter and has_number and has_special
+
 @router.post("/login", response_model=TokenResponse)
 async def login(request: LoginRequest):
-    username = request.username.strip().lower()
+    username = request.username.strip()
     password = request.password.strip()
     
-    # Case-insensitive username and trimmed whitespace check
-    if username == "admin" and password == "password123":
-        access_token = create_access_token(data={"sub": request.username})
-        return {
-            "access_token": access_token,
-            "token_type": "bearer",
-            "username": request.username
-        }
-    raise HTTPException(status_code=401, detail="Invalid username or password")
+    if not username:
+        raise HTTPException(status_code=400, detail="Username cannot be empty")
+        
+    if not validate_password_strength(password):
+        raise HTTPException(
+            status_code=400, 
+            detail="Password must contain a combination of letters, numbers, and special characters (e.g. @, #, $)."
+        )
+        
+    access_token = create_access_token(data={"sub": username})
+    return {
+        "access_token": access_token,
+        "token_type": "bearer",
+        "username": username
+    }
+
 

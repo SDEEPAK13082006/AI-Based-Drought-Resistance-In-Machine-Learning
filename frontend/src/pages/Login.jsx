@@ -22,6 +22,17 @@ const Login = () => {
     const cleanUsername = username.trim();
     const cleanPassword = password.trim();
 
+    // Client-side password complexity check
+    const hasLetter = /[a-zA-Z]/.test(cleanPassword);
+    const hasNumber = /[0-9]/.test(cleanPassword);
+    const hasSpecial = /[^a-zA-Z0-9\s]/.test(cleanPassword);
+
+    if (!hasLetter || !hasNumber || !hasSpecial) {
+      setError('Password must contain a combination of letters, numbers, and special characters (like @, #, $).');
+      setLoading(false);
+      return;
+    }
+
     try {
       // POST to backend auth login endpoint using the configured api utility
       const response = await api.post('/api/auth/login', {
@@ -115,14 +126,12 @@ const Login = () => {
             </button>
           </form>
 
-          {/* Guest account credentials block */}
+          {/* Password strength requirements instruction block */}
           <div className="mt-8 pt-6 border-t border-white/5 text-center">
-            <span className="text-xs text-slate-400 font-medium">Demo Credentials</span>
-            <div className="mt-2 inline-flex items-center gap-4 px-4 py-2 rounded-xl bg-white/5 border border-white/5 text-xs text-slate-300 font-mono">
-              <div>user: <span className="text-emerald-400">admin</span></div>
-              <div className="text-white/10">|</div>
-              <div>pass: <span className="text-emerald-400">password123</span></div>
-            </div>
+            <span className="text-xs text-slate-400 font-medium">Security Requirement</span>
+            <p className="text-[11px] text-slate-500 mt-2 leading-relaxed max-w-xs mx-auto">
+              You can log in with any username. Your password must contain a combination of letters, numbers, and special characters (e.g. @, #, $, etc.).
+            </p>
           </div>
         </GlassCard>
       </motion.div>
