@@ -1,0 +1,199 @@
+@import "tailwindcss";
+
+:root {
+  font-family: 'Outfit', sans-serif;
+  --color-primary: #10b981;
+  --color-primary-dark: #059669;
+  --color-secondary: #3b82f6;
+  --color-secondary-dark: #2563eb;
+  --color-accent: #06b6d4;
+  --color-danger: #ef4444;
+  --color-warning: #f59e0b;
+
+  --bg-app: linear-gradient(135deg, #f0fdf4 0%, #e8f4fd 50%, #eff6ff 100%);
+  --bg-surface: rgba(255, 255, 255, 0.5);
+  --border-glass: rgba(16, 185, 129, 0.15);
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --shadow-color: rgba(15, 23, 42, 0.07);
+}
+
+.dark {
+  --bg-app: linear-gradient(135deg, #060b11 0%, #0a1525 50%, #0d1527 100%);
+  --bg-surface: rgba(10, 18, 35, 0.6);
+  --border-glass: rgba(52, 211, 153, 0.12);
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --shadow-color: rgba(0, 0, 0, 0.35);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text-main);
+  background: var(--bg-app);
+  background-attachment: fixed;
+  transition: background 0.4s ease, color 0.3s ease;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Custom Scrollbar ─────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(16, 185, 129, 0.25);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(16, 185, 129, 0.5); }
+
+/* ── Glassmorphism ────────────────────────────────── */
+.glass {
+  background: var(--bg-surface);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--border-glass);
+  box-shadow: 0 4px 24px 0 var(--shadow-color);
+}
+
+.glass-hover {
+  transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+}
+.glass-hover:hover {
+  box-shadow: 0 8px 40px 0 rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.3);
+  transform: translateY(-3px);
+}
+
+/* ── Leaflet ──────────────────────────────────────── */
+.leaflet-container {
+  background: transparent !important;
+  border-radius: 16px;
+}
+.leaflet-popup-content-wrapper {
+  background: rgba(10, 18, 35, 0.92) !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  color: #fff !important;
+  border-radius: 12px !important;
+}
+.leaflet-popup-tip { background: rgba(10, 18, 35, 0.92) !important; }
+
+/* ── Animations ───────────────────────────────────── */
+@keyframes blob-float {
+  0%,100% { transform: translate(0, 0) scale(1); }
+  33%     { transform: translate(4%, 6%) scale(1.04); }
+  66%     { transform: translate(-3%, 4%) scale(0.97); }
+}
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes pulse-ring {
+  0%   { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16,185,129,0.4); }
+  70%  { transform: scale(1);    box-shadow: 0 0 0 10px rgba(16,185,129,0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0  rgba(16,185,129,0); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.animate-blob       { animation: blob-float 14s infinite ease-in-out; }
+.animate-fade-in    { animation: fade-in 0.5s ease both; }
+.animate-slide-in   { animation: slide-in-right 0.4s ease both; }
+.animate-pulse-ring { animation: pulse-ring 2.5s infinite; }
+.animate-spin-slow  { animation: spin-slow 8s linear infinite; }
+
+.animation-delay-1000 { animation-delay: 1s; }
+.animation-delay-2000 { animation-delay: 2s; }
+.animation-delay-3000 { animation-delay: 3s; }
+.animation-delay-4000 { animation-delay: 4s; }
+
+/* ── Skeleton Loader ──────────────────────────────── */
+.skeleton {
+  background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.05) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.8s infinite;
+  border-radius: 8px;
+}
+
+/* ── Gauge SVG ────────────────────────────────────── */
+.gauge-svg { transform: rotate(-90deg); }
+.gauge-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 11;
+}
+.gauge-progress {
+  fill: none;
+  stroke-width: 11;
+  stroke-linecap: round;
+  transition: stroke-dasharray 1s cubic-bezier(.4,0,.2,1);
+}
+
+/* ── Slider Styling ───────────────────────────────── */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 99px;
+  background: rgba(255,255,255,0.08);
+  outline: none;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #10b981, #059669);
+  cursor: pointer;
+  box-shadow: 0 0 0 3px rgba(16,185,129,0.2);
+  transition: box-shadow 0.2s ease;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 0 5px rgba(16,185,129,0.3);
+}
+
+/* ── Gradient Text ────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #10b981, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Status Dot ───────────────────────────────────── */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.status-dot.online  { background: #10b981; animation: pulse-ring 2s infinite; }
+.status-dot.warning { background: #f59e0b; }
+.status-dot.offline { background: #ef4444; }
+
+/* ── Recharts custom tooltip ──────────────────────── */
+.recharts-tooltip-wrapper .recharts-default-tooltip {
+  background-color: rgba(10, 18, 35, 0.92) !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  border-radius: 10px !important;
+}
