@@ -50,15 +50,7 @@ const Landing = () => {
 
       {/* ── Hero ── */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 text-center">
-        {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: -16 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-8"
-        >
-          <span className="status-dot online" />
-          Next-Gen AgTech Intelligence Platform
-        </motion.div>
+
 
         {/* Heading */}
         <motion.h1
@@ -162,29 +154,7 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* ── Tech Stack ── */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-white/5">
-        <div className="text-center mb-10">
-          <h2 className="text-2xl font-bold tracking-tight">Powered By</h2>
-          <p className="text-slate-400 mt-2 text-sm">Modern production-grade technologies across the full stack</p>
-        </div>
-        <div className="flex flex-wrap justify-center gap-3">
-          {TECH.map(({ name, emoji, tag }, i) => (
-            <motion.div
-              key={name}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-              whileHover={{ y: -3 }}
-              className="glass rounded-xl px-4 py-3 border border-white/8 text-center min-w-[80px]"
-            >
-              <span className="text-xl">{emoji}</span>
-              <p className="text-xs font-bold text-white mt-1">{name}</p>
-              <p className="text-[9px] text-slate-500 mt-0.5">{tag}</p>
-            </motion.div>
-          ))}
-        </div>
+
 
         {/* Final CTA */}
         <motion.div
@@ -200,10 +170,6 @@ const Landing = () => {
           >
             Get Started Free <ArrowRight className="w-4 h-4" />
           </Link>
-          <p className="text-[11px] text-slate-500 mt-4 flex items-center justify-center gap-1.5">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
-            Login with demo credentials: admin / password123
-          </p>
         </motion.div>
       </section>
     </div>
