@@ -159,7 +159,7 @@ const Dashboard = () => {
         />
         <StatCard
           icon={Brain}
-          label="AI Risk Score"
+          label="Drought Risk Score"
           value={`${Math.round(stats.ai_risk_score * 100)}%`}
           colorClass={riskColors.text}
           bgClass={riskColors.bg}
@@ -303,7 +303,7 @@ const Dashboard = () => {
               <div className="p-3.5 rounded-xl bg-red-500/10 border border-red-500/20 text-xs">
                 <div className="flex items-center gap-2 font-bold text-red-400 mb-1.5">
                   <Brain className="w-3.5 h-3.5" />
-                  AI High-Risk Alert
+                  Model High-Risk Alert
                 </div>
                 <p className="text-slate-300 leading-relaxed">
                   Model confidence is {Math.round(stats.ai_risk_score * 100)}% drought risk. Activate emergency irrigation protocol.
@@ -317,7 +317,7 @@ const Dashboard = () => {
             className="flex items-center justify-center gap-2 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-colors text-xs font-semibold text-slate-300"
           >
             <Brain className="w-3.5 h-3.5 text-emerald-500" />
-            Explore AI Insights
+            Explore Insights
           </Link>
         </GlassCard>
       </div>

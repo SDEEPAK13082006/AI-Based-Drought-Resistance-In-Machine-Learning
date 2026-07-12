@@ -24,7 +24,7 @@ const Navbar = () => {
         <Link to="/" className="flex items-center gap-2 text-xl font-bold tracking-tight">
           <span className="text-2xl">🌾</span>
           <span className="bg-gradient-to-r from-emerald-500 to-blue-500 bg-clip-text text-transparent">
-            DroughtGuard AI
+            DroughtGuard
           </span>
         </Link>
       </div>

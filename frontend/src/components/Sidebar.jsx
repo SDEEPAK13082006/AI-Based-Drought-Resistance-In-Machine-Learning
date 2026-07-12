@@ -14,7 +14,7 @@ const MENU = [
   { name: 'Rainfall Charts',   path: '/rainfall',  icon: CloudRain,        color: 'text-blue-400' },
   { name: 'India Heatmap',     path: '/heatmap',   icon: Map,              color: 'text-orange-400' },
   { name: 'Irrigation Plan',   path: '/irrigation',icon: Droplets,         color: 'text-cyan-400' },
-  { name: 'AI Insights',       path: '/insights',  icon: Lightbulb,        color: 'text-amber-400' },
+  { name: 'Model Insights',   path: '/insights',  icon: Lightbulb,        color: 'text-amber-400' },
   { name: 'MLOps Monitor',     path: '/mlops',     icon: Activity,         color: 'text-purple-400' },
 ];
 

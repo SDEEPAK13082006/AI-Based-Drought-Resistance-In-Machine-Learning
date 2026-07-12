@@ -99,7 +99,7 @@ const AIInsights = () => {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-extrabold tracking-tight">AI Explainability & SHAP Insights</h1>
+        <h1 className="text-3xl font-extrabold tracking-tight">Model Explanations & SHAP Insights</h1>
         <p className="text-sm text-slate-400 mt-1">
           Understand model decisions via SHapley Additive exPlanations — real-time as you adjust parameters.
         </p>
@@ -204,7 +204,7 @@ const AIInsights = () => {
                   <div className="skeleton h-3 w-5/6" />
                   <div className="skeleton h-3 w-4/6" />
                 </div>
-              ) : explanation || 'Adjust parameters to generate AI explanation...'}
+              ) : explanation || 'Adjust parameters to generate model explanation...'}
             </div>
           </GlassCard>
 

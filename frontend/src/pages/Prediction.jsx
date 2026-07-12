@@ -255,7 +255,7 @@ const Prediction = () => {
 
                 {/* Explanation Card */}
                 <GlassCard className="bg-white/5 border-white/5" hover={false}>
-                  <h4 className="font-bold text-sm text-slate-300 mb-2.5">Explainable AI (SHAP Summary)</h4>
+                  <h4 className="font-bold text-sm text-slate-300 mb-2.5">Model Explanations (SHAP Summary)</h4>
                   <div className="p-4 rounded-xl bg-white/5 border border-white/5 text-xs leading-relaxed text-slate-300">
                     {result.explanation}
                   </div>

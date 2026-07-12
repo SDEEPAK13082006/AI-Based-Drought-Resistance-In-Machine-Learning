@@ -8,9 +8,9 @@ import {
 import GlassCard from '../components/GlassCard';
 
 const FEATURES = [
-  { icon: Brain,     title: 'AI Drought Prediction',   color: 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20',
+  { icon: Brain,     title: 'Drought Prediction',   color: 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20',
     desc: 'XGBoost classifier trained on 5000+ samples of SPEI, CHIRPS and soil moisture data to forecast regional drought risk with 92%+ accuracy.' },
-  { icon: Lightbulb, title: 'Explainable AI (SHAP)',    color: 'text-amber-500 bg-amber-500/10 border-amber-500/20',
+  { icon: Lightbulb, title: 'Model Explanations (SHAP)',    color: 'text-amber-500 bg-amber-500/10 border-amber-500/20',
     desc: 'SHAP TreeExplainer surfaces feature-level contributions for every inference — full transparency into why the model predicts what it does.' },
   { icon: Sprout,    title: 'Drought-Resistant Crops',  color: 'text-lime-500 bg-lime-500/10 border-lime-500/20',
     desc: 'Recommends 12+ curated seed varieties with water requirements, growth periods, yield forecasts and profit estimates per hectare.' },
@@ -79,7 +79,7 @@ const Landing = () => {
           transition={{ delay: 0.2 }}
           className="max-w-2xl mx-auto mt-6 text-base sm:text-lg text-slate-400 leading-relaxed"
         >
-          AI-powered drought prediction, crop intelligence, real-time rainfall analytics and
+          Dynamic drought prediction, crop intelligence, real-time rainfall analytics and
           smart irrigation scheduling — all in one production-ready platform.
         </motion.p>
 
