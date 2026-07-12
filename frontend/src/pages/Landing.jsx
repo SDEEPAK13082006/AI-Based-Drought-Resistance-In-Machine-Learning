@@ -171,7 +171,6 @@ const Landing = () => {
             Get Started Free <ArrowRight className="w-4 h-4" />
           </Link>
         </motion.div>
-      </section>
     </div>
   );
 };
