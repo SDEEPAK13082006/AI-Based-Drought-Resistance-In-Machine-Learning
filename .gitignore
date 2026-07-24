@@ -60,3 +60,4 @@ desktop.ini
 *.log
 .agents/
 .gemini/
+/Datasets
