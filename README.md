@@ -3,8 +3,11 @@
 DroughtGuard AI is a modern, production-grade agricultural intelligence platform built using **React**, **FastAPI**, **Tailwind CSS v4**, and **XGBoost ML** with **SHAP** explainability. It predicts regional drought risks, recommends drought-resistant crops, and schedules dynamic irrigation plans based on live soil metrics.
 
 ## 🚀 Project Architecture
-- **`/frontend`**: React 19 (Vite), Tailwind CSS v4, Framer Motion, Recharts, and React Leaflet.
-- **`/backend`**: FastAPI (Uvicorn), XGBoost Classifier, SHAP (Explainable AI), and Pydantic validation.
+
+## 🔗 Live Demo
+
+- Open the live application here: https://ai-based-drought-resistance-in-mach.vercel.app/
+
 
 ---
 
