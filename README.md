@@ -100,3 +100,4 @@ Since the backend utilizes XGBoost, SHAP, and other high-performance ML librarie
 ## 🔑 Demo Credentials
 - **Username**: `admin`
 - **Password**: `password123`
+Open the app : https://ai-based-drought-resistance-in-mach.vercel.app/
