@@ -11,6 +11,14 @@
             "name": "Launch Chrome against localhost",
             "url": "http://localhost:8080",
             "webRoot": "${workspaceFolder}"
+        },
+        {
+            "name": "Run FastAPI Backend",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/AI-Based-Drought-Resistance-In-Machine-Learning/backend/run.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/AI-Based-Drought-Resistance-In-Machine-Learning/backend"
         }
     ]
 }
