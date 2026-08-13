@@ -1,4 +1,5 @@
+import os
 from uvicorn import run
 
 if __name__ == "__main__":
-    run("app.main:app", host="127.0.0.1", port=8000, reload=True)
+    run("app.main:app", host="0.0.0.0", port=int(os.getenv("PORT", "8000")), reload=True)

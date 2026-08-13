@@ -8,7 +8,7 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Enable CORS for localhost React frontend and Vercel production
+# Enable CORS for localhost React frontend, Vercel and Render deployment domains
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -19,6 +19,7 @@ app.add_middleware(
         "https://ai-based-drought-resistance.vercel.app",
         "https://ai-based-drought-resistance-huwsp5xok-code-ninjas4.vercel.app",
         "https://*.vercel.app",
+        "https://*.onrender.com",
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -65,4 +66,5 @@ def health_check():
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run("app.main:app", host="127.0.0.1", port=8000, reload=True)
+    port = int(os.getenv("PORT", "8000"))
+    uvicorn.run("app.main:app", host="0.0.0.0", port=port, reload=True)
