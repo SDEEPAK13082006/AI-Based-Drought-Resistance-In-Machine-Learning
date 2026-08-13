@@ -6,7 +6,7 @@ DroughtGuard AI is a modern, production-grade agricultural intelligence platform
 
 ## 🔗 Live Demo
 
-- Open the live application here: https://ai-based-drought-resistance-in-mach.vercel.app/
+- Open the live application here: [https://ai-based-drought-resistance.vercel.app/](https://ai-based-drought-resistance.vercel.app/)
 
 
 ---
@@ -100,4 +100,5 @@ Since the backend utilizes XGBoost, SHAP, and other high-performance ML librarie
 ## 🔑 Demo Credentials
 - **Username**: `admin`
 - **Password**: `password123`
-Open the app : https://ai-based-drought-resistance-in-mach.vercel.app/
+
+Open the app: [https://ai-based-drought-resistance.vercel.app/](https://ai-based-drought-resistance.vercel.app/)
