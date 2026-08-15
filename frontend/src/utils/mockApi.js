@@ -150,10 +150,10 @@ export function predictDrought({ rainfall, temperature, humidity, soil_moisture,
   const drought_probability = Math.min(0.99, Math.max(0.01, raw_prob + (Math.random() - 0.5) * 0.08));
 
   let risk_level;
-  if (drought_probability >= 0.7)      risk_level = 'Severe Drought Risk';
-  else if (drought_probability >= 0.5) risk_level = 'Moderate Drought Risk';
-  else if (drought_probability >= 0.3) risk_level = 'Mild Drought Risk';
-  else                                  risk_level = 'No Drought Risk';
+  if (drought_probability >= 0.75)     risk_level = 'Severe Drought';
+  else if (drought_probability >= 0.5) risk_level = 'Moderate Drought';
+  else if (drought_probability >= 0.25) risk_level = 'Mild Drought';
+  else                                  risk_level = 'No Drought';
 
   const explanation = `For ${region}: rainfall of ${rainfall}mm (${rainfall < 200 ? 'critically low — major drought driver' : rainfall < 350 ? 'below normal — contributing to stress' : 'adequate'}), temperature ${temperature}°C (${temperature > 38 ? 'high evapotranspiration loss' : 'within normal range'}), humidity ${humidity}% (${humidity < 35 ? 'very dry atmosphere' : 'moderate'}), soil moisture ${soil_moisture}% (${soil_moisture < 25 ? 'approaching wilting point — urgent' : soil_moisture < 45 ? 'below field capacity' : 'adequate'}). Overall drought probability: ${Math.round(drought_probability * 100)}%.`;
 
@@ -235,8 +235,9 @@ export function getInsights({ rainfall, temperature, humidity, soil_moisture, re
   const soil_shap  = parseFloat(((35 - soil_moisture) / 70 * 0.35).toFixed(3));
   const reg_shap   = parseFloat((Math.random() * 0.2 - 0.1).toFixed(3));
 
-  const shap_values = { rainfall: rain_shap, temperature: temp_shap, humidity: humid_shap, soil_moisture: soil_shap, region: reg_shap };
-  const feature_importance = { rainfall: 0.38, temperature: 0.24, humidity: 0.18, soil_moisture: 0.14, region: 0.06 };
+  // Keys match backend SHAP explainer output (region_encoded, not region)
+  const shap_values = { rainfall: rain_shap, temperature: temp_shap, humidity: humid_shap, soil_moisture: soil_shap, region_encoded: reg_shap };
+  const feature_importance = { rainfall: 0.38, temperature: 0.24, humidity: 0.18, soil_moisture: 0.14, region_encoded: 0.06 };
 
   const shapEntries = Object.entries(shap_values).sort((a, b) => Math.abs(b[1]) - Math.abs(a[1]));
   const top_factors = shapEntries.map(([k]) => k);

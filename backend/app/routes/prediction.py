@@ -23,7 +23,7 @@ async def predict(request: PredictionInput, current_user: str = Depends(verify_t
         
         # Generate text explanation
         explanation, _ = generate_natural_language_explanation(
-            features_dict=request.dict(),
+            features_dict=request.model_dump(),
             contributions=contributions,
             prob=res["drought_probability"]
         )

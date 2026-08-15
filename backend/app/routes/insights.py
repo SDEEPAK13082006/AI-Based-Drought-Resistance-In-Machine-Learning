@@ -23,7 +23,7 @@ async def get_insights(request: PredictionInput, current_user: str = Depends(ver
         
         # Get natural language description
         explanation, top_factors = generate_natural_language_explanation(
-            features_dict=request.dict(),
+            features_dict=request.model_dump(),
             contributions=contributions,
             prob=res["drought_probability"]
         )
