@@ -9,12 +9,16 @@ from app.data import demo_data
 router = APIRouter(prefix="/api/rainfall", tags=["Rainfall Analytics"])
 
 def read_chirps_data():
-    base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    file_path = os.path.join(base_dir, "Datasets", "chirps_rainfall_timeseries.xlsx")
-    # Fallback to root level
-    if not os.path.exists(file_path):
-        file_path = os.path.join(base_dir, "chirps_rainfall_timeseries.xlsx")
-    if os.path.exists(file_path):
+    backend_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    project_dir = os.path.dirname(backend_dir)
+    possible_paths = [
+        os.path.join(project_dir, "Datasets", "chirps_rainfall_timeseries.xlsx"),
+        os.path.join(backend_dir, "Datasets", "chirps_rainfall_timeseries.xlsx"),
+        os.path.join(project_dir, "chirps_rainfall_timeseries.xlsx"),
+        os.path.join(backend_dir, "chirps_rainfall_timeseries.xlsx"),
+    ]
+    file_path = next((p for p in possible_paths if os.path.exists(p)), None)
+    if file_path:
         df = pd.read_excel(file_path)
         # Expected columns: Date, Rainfall_mm, Region_ID or similar.
         # Normalize columns to lowercase to handle variations

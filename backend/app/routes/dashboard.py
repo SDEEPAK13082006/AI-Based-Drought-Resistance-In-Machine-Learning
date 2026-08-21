@@ -13,19 +13,24 @@ async def get_dashboard_stats(current_user: str = Depends(verify_token)):
     
     # Try reading real SPEI from bundelkhand_spei.xlsx
     try:
-        base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        spei_file = os.path.join(base_dir, "Datasets", "bundelkhand_spei.xlsx")
-        # Fallback to root level if Datasets folder path doesn't exist
-        if not os.path.exists(spei_file):
-            spei_file = os.path.join(base_dir, "bundelkhand_spei.xlsx")
+        backend_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        project_dir = os.path.dirname(backend_dir)
+        possible_paths = [
+            os.path.join(project_dir, "Datasets", "bundelkhand_spei.xlsx"),
+            os.path.join(backend_dir, "Datasets", "bundelkhand_spei.xlsx"),
+            os.path.join(project_dir, "bundelkhand_spei.xlsx"),
+            os.path.join(backend_dir, "bundelkhand_spei.xlsx"),
+        ]
+        spei_file = next((p for p in possible_paths if os.path.exists(p)), None)
         
-        if os.path.exists(spei_file):
+        if spei_file:
             # Read excel using pandas
             df = pd.read_excel(spei_file)
-            if not df.empty and 'SPEI' in df.columns:
+            df.columns = [c.strip().lower() for c in df.columns]
+            if not df.empty and 'spei' in df.columns:
                 # Get the latest row
                 latest_row = df.iloc[-1]
-                latest_spei = float(latest_row['SPEI'])
+                latest_spei = float(latest_row['spei'])
                 
                 # Overwrite mockup SPEI and drought levels based on SPEI index
                 stats["spei"] = round(latest_spei, 2)
