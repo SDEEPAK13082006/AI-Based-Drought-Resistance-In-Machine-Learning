@@ -1,74 +1,22 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from datetime import datetime
+import os
+import sys
 
-app = FastAPI(title="DroughtGuard AI API")
+# Ensure backend package is in sys.path
+root_dir = os.path.dirname(os.path.abspath(__file__))
+backend_dir = os.path.join(root_dir, "AI-Based-Drought-Resistance-In-Machine-Learning", "backend")
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+if backend_dir not in sys.path:
+    sys.path.insert(0, backend_dir)
 
+try:
+    from app.main import app
+except ImportError:
+    # If directory structure differs or running directly inside backend
+    if root_dir not in sys.path:
+        sys.path.insert(0, root_dir)
+    from app.main import app
 
-@app.get("/")
-def root():
-    return {
-        "status": "running",
-        "service": "DroughtGuard AI API"
-    }
-
-
-@app.get("/health")
-def health():
-    return {
-        "status": "healthy"
-    }
-
-
-@app.get("/api/mlops/status")
-def mlops_status():
-    return {
-        "status": "active",
-        "model": "DroughtGuard ML",
-        "monitoring": "Evidently"
-    }
-
-
-@app.get("/api/mlops/metrics")
-def mlops_metrics():
-    return {
-        "model_accuracy": 0.92,
-        "drift_detected": False,
-        "prediction_count": 0,
-        "last_updated": datetime.now().isoformat()
-    }
-
-
-@app.get("/api/dashboard/stats")
-def dashboard_stats():
-    return {
-        "total_predictions": 0,
-        "average_rainfall": 0,
-        "drought_risk": 0,
-        "model_accuracy": 0.92
-    }
-
-
-@app.get("/api/rainfall/daily")
-def daily_rainfall():
-    return {
-        "data": []
-    }
-
-
-@app.post("/api/insights")
-def insights():
-    return {
-        "insights": [
-            "DroughtGuard monitoring is active.",
-            "Evidently monitoring is ready."
-        ]
-    }
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.getenv("PORT", "8000"))
+    uvicorn.run(app, host="0.0.0.0", port=port)
