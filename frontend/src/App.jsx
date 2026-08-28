@@ -7,6 +7,7 @@ import { AuthProvider, ProtectedRoute } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
+import AIChatbot from './components/AIChatbot';
 
 // Pages
 import Landing from './pages/Landing';
@@ -33,10 +34,12 @@ const DashboardLayout = () => {
           </div>
         </main>
         <Footer />
+        <AIChatbot />
       </div>
     </div>
   );
 };
+
 
 // Public layout (landing/login)
 const PublicLayout = () => {

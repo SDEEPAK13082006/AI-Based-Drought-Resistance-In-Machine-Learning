@@ -28,7 +28,7 @@ app.add_middleware(
 )
 
 # Include Routers
-from app.routes import auth, dashboard, prediction, crops, rainfall, heatmap, irrigation, insights, mlops
+from app.routes import auth, dashboard, prediction, crops, rainfall, heatmap, irrigation, insights, mlops, chat
 
 app.include_router(auth.router)
 app.include_router(dashboard.router)
@@ -39,6 +39,8 @@ app.include_router(heatmap.router)
 app.include_router(irrigation.router)
 app.include_router(insights.router)
 app.include_router(mlops.router)
+app.include_router(chat.router)
+
 
 @app.get("/")
 def read_root():

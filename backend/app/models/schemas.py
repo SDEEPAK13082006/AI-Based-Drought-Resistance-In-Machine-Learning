@@ -77,3 +77,15 @@ class InsightData(BaseModel):
     shap_values: Dict[str, float]
     explanation: str
     top_factors: List[str]
+
+class ChatInput(BaseModel):
+    message: str
+    region: Optional[str] = None
+    crop: Optional[str] = None
+    soil_moisture: Optional[float] = None
+
+class ChatOutput(BaseModel):
+    reply: str
+    suggestions: List[str]
+    intent: str
+

@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import {
   LayoutDashboard, Brain, Sprout, CloudRain,
   Map, Droplets, Lightbulb, Settings,
-  ChevronLeft, ChevronRight, Activity
+  ChevronLeft, ChevronRight, Activity, Sparkles
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -14,9 +14,12 @@ const MENU = [
   { name: 'Rainfall Charts',   path: '/rainfall',  icon: CloudRain,        color: 'text-blue-400' },
   { name: 'India Heatmap',     path: '/heatmap',   icon: Map,              color: 'text-orange-400' },
   { name: 'Irrigation Plan',   path: '/irrigation',icon: Droplets,         color: 'text-cyan-400' },
-  { name: 'Model Insights',   path: '/insights',  icon: Lightbulb,        color: 'text-amber-400' },
-  { name: 'MLOps Monitor',     path: '/mlops',     icon: Activity,         color: 'text-purple-400' },
+  { name: 'Risk Insights',     path: '/insights',  icon: Lightbulb,        color: 'text-amber-400' },
+  { name: 'System Monitor',    path: '/mlops',     icon: Activity,         color: 'text-purple-400' },
+  { name: 'Agri Advisor',      path: '/insights',  icon: Sparkles,         color: 'text-teal-400' },
 ];
+
+
 
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);

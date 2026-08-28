@@ -37,6 +37,9 @@ def get_shap_explainer_data(features_df):
         explainer = shap.TreeExplainer(model)
         shap_values = explainer.shap_values(features_df)
         
+        if hasattr(shap_values, "values"):
+            shap_values = shap_values.values
+
         # Handle different SHAP output shapes
         if isinstance(shap_values, list):
             shap_vals = shap_values[1][0]
@@ -90,9 +93,9 @@ def generate_natural_language_explanation(features_dict, contributions, prob):
         factors.append(f"adequate soil moisture ({features_dict.get('soil_moisture', 0):.1f}%) retaining groundwater")
         
     if contributions.get('temperature', 0) > 0.05:
-        factors.append(f"high temperature ({features_dict.get('temperature', 0):.1f}°C) driving evapotranspiration")
+        factors.append(f"high temperature ({features_dict.get('temperature', 0):.1f}\u00b0C) driving evapotranspiration")
     elif contributions.get('temperature', 0) < -0.05:
-        factors.append(f"moderate temperature ({features_dict.get('temperature', 0):.1f}°C) reducing heat stress")
+        factors.append(f"moderate temperature ({features_dict.get('temperature', 0):.1f}\u00b0C) reducing heat stress")
         
     if contributions.get('humidity', 0) > 0.05:
         factors.append(f"low humidity ({features_dict.get('humidity', 0):.1f}%) accelerating dry conditions")

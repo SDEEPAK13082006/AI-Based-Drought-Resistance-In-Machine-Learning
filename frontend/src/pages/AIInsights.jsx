@@ -119,11 +119,12 @@ const AIInsights = () => {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-extrabold tracking-tight">Model Explanations & SHAP Insights</h1>
+        <h1 className="text-3xl font-extrabold tracking-tight">Climate Risk & Factor Analytics</h1>
         <p className="text-sm text-slate-400 mt-1">
-          Understand model decisions via SHapley Additive exPlanations — real-time as you adjust parameters.
+          Analyze real-time regional climate contributions, moisture deficits, and weather risk factors.
         </p>
       </div>
+
 
       <div className="grid lg:grid-cols-3 gap-8">
         {/* Left: Simulator */}

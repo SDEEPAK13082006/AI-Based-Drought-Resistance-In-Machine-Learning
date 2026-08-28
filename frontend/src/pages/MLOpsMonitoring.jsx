@@ -86,11 +86,12 @@ const MLOpsMonitoring = () => {
       {/* Header */}
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-extrabold tracking-tight">MLOps Lifecycle Monitor</h1>
+          <h1 className="text-3xl font-extrabold tracking-tight">System Performance & Health Monitor</h1>
           <p className="text-sm text-slate-400 mt-1">
-            Model versioning, data drift detection, inference accuracy and pipeline health.
+            Forecast accuracy tracking, data stability verification, response times and pipeline health.
           </p>
         </div>
+
         <button
           onClick={() => fetchData(true)}
           disabled={refreshing}
